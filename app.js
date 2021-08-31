@@ -1,11 +1,10 @@
 const EvenEmitter = require('events');
 
-const emitter = new EvenEmitter();
+const Logger = require('./logger');
+const logger = new Logger();
 
-emitter.on('messageLogged', (arg) => {
-    console.log('Lister caller', );
-})
+logger.on('messageLogged', (arg) => {
+    console.log('Listener caller', arg);
+});
 
-emitter.emit('messageLogged', { id: 1, });
-
-console.log("say hello");
+logger.log('message')
