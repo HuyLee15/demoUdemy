@@ -1,10 +1,8 @@
-const EvenEmitter = require('events');
+let _ = require("./underscore");
 
-const Logger = require('./logger');
-const logger = new Logger();
+//core module
+//file or folder
+//node_modules
 
-logger.on('messageLogged', (arg) => {
-    console.log('Listener caller', arg);
-});
-
-logger.log('message')
+let result = _.contains([1, 2, 3], 2);
+console.log(result);
