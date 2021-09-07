@@ -1,4 +1,4 @@
-let _ = require("./underscore");
+let _ = require("underscore");
 
 //core module
 //file or folder
