@@ -1,8 +1,17 @@
-let _ = require("underscore");
+const http = require('http');
 
-//core module
-//file or folder
-//node_modules
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.write('hello world');
+        res.end();
+    }
 
-let result = _.contains([1, 2, 3], 2);
-console.log(result);
+    if (req.url === 'api/product') {
+        res.write(JSON.stringify([1, 2, 3]));
+        res.end();
+    }
+})
+
+server.listen(5000);
+
+console.log("Listening on port 5000!!!");
