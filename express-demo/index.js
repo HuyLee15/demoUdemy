@@ -1,10 +1,25 @@
+console.log();
+const helmet = require('helmet');
 const Joi = require('joi');
 const express = require('express');
-
+const logger = require('./logger');
+const { urlencoded } = require('express');
+const morgan = require('morgan');
 const app = express();
 
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(helmet());
+
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled...');
+}
+
+
+app.use(logger);
 
 const products = [
     { id: 1, name: 'product1' },
