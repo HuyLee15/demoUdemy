@@ -5,7 +5,12 @@ const express = require('express');
 const logger = require('./logger');
 const { urlencoded } = require('express');
 const morgan = require('morgan');
+const debug = require('debug')('app:startup');
+
 const app = express();
+
+app.set('view engine', 'pug');
+app.set('views', './views');
 
 
 app.use(express.json());
@@ -33,7 +38,7 @@ const products = [
 ]
 
 app.get('/', (req, res) => {
-    res.send('Hello World!!!');
+    res.render('index', { title: 'My express app', message: 'Hello' })
 });
 
 app.get('/api/products', (req, res) => {
