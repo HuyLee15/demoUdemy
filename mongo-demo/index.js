@@ -18,7 +18,7 @@ createProduct = async() => {
     const product = new Product({
         name: 'Node.js Product',
         author: 'Felix',
-        tags: ['reactjs', 'frontend'],
+        tags: ['node', 'backend'],
         isPublished: true
     });
 
@@ -26,4 +26,20 @@ createProduct = async() => {
     console.log(result);
 }
 
-createProduct();
+getProducts = async() => {
+
+    const pageNumber = 2;
+    const pageSize = 10;
+
+
+
+    const products = await Product
+        .find({ author: 'Felix', isPublished: true })
+        .skip((pageNumber - 1) * pageSize)
+        .limit(pageSize)
+        .sort({ name: 1 })
+        .count();
+    console.log(products);
+}
+
+getProducts()
