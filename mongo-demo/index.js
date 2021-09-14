@@ -38,8 +38,26 @@ getProducts = async() => {
         .skip((pageNumber - 1) * pageSize)
         .limit(pageSize)
         .sort({ name: 1 })
-        .count();
+        .select({ name: 1, tags: 1 });
     console.log(products);
 }
 
-getProducts()
+updateProduct = async(id) => {
+
+    const product = await Product.findByIdAndUpdate(id, {
+        $set: {
+            author: "Felix lixlix",
+            isPublished: false
+        }
+    }, { new: true });
+    console.log(product);
+}
+
+removeProduct = async(id) => {
+
+    //const result = await Product.deleteMany({ _id: id });
+    const product = await Product.findByIdAndRemove(id);
+    console.log(product);
+}
+
+removeProduct('613f16ee25d446c86ac7f49f');
