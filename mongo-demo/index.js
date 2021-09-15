@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+console.log("start index")
 
 mongoose.connect('mongodb://localhost:27017')
     .then(() => console.log('Connected to MongoDB!!!'))
